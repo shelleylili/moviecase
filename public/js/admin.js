@@ -1,6 +1,6 @@
 /**
  * Created by Administrator on 16-9-2.
-    根据movie的id删除一条数据
+    根据movie的id删除一条数据 
  */
 $(function(){
   $(".del").click(function(e){
