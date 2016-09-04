@@ -1,0 +1,17 @@
+{
+  "name": "nodeweb",
+  "description": "website build by node+mongodb",
+  "main": "app.js",
+  "authors": [
+    "shelley"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

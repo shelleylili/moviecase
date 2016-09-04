@@ -1,0 +1,42 @@
+//Created by Administrator on 16-9-1.
+extends layout
+
+block content
+    .container
+        .row
+            h3.text-center 输入电影的详细信息
+            form.form-horizontal(method="post",action="/admin/movie/new")
+                input(type="hidden",name="_id",value="#{movie._id}")
+                .form-group
+                    label.col-sm-2.control-label(for="inputTitle") 电影名字
+                    .col-sm-10
+                        input#inputTitle.form-control(type="text",name="title",value="#{movie.title}",placeholder="请输入影片名字")
+                .form-group
+                    label.col-sm-2.control-label(for="inputDoctor") 导演
+                    .col-sm-10
+                        input#inputDoctor.form-control(type="text",name="doctor",value="#{movie.doctor}",placeholder="请输入影片导演")
+                .form-group
+                    label.col-sm-2.control-label(for="inputCountry") 国家
+                    .col-sm-10
+                        input#inputCountry.form-control(type="text",name="country",value="#{movie.country}",placeholder="请输入影片国家")
+                .form-group
+                    label.col-sm-2.control-label(for="inputLanguage") 语言
+                    .col-sm-10
+                        input#inputLanguage.form-control(type="text",name="language",value="#{movie.language}",placeholder="请输入影片语言")
+                .form-group
+                    label.col-sm-2.control-label(for="inputPoster") 海报地址
+                    .col-sm-10
+                        input#inputPoster.form-control(type="text",name="poster",value="#{movie.poster}",placeholder="请输入海报地址")
+                .form-group
+                    label.col-sm-2.control-label(for="inputFlash") 影片地址
+                    .col-sm-10
+                        input#inputFlash.form-control(type="text",name="flash",value="#{movie.flash}",placeholder="请输入影片地址")
+                .form-group
+                    label.col-sm-2.control-label(for="inputYear") 上映年份
+                    .col-sm-10
+                        input#inputYear.form-control(type="text",name="year",value="#{movie.year}",placeholder="请输入影片上映年份")
+                .form-group
+                    label.col-sm-2.control-label(for="inputSummary") 简介
+                    .col-sm-10
+                        input#inputSummary.form-control(type="text",name="summary",value="#{movie.summary}",placeholder="请输入影片简介")
+                button.btn.btn-default.btn-sm(type="submit") input
