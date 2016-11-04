@@ -1,6 +1,6 @@
-从慕课网上看到的视频教程，学习过程中试着搭建的小案例
+#从慕课网上看到的视频教程，学习过程中试着搭建的小案例
 
-一、node和express搭建环境
+##一、node和express搭建环境
     1）npm init
     2）npm install express-generator   //如果不提前安装第四部时候会提示express不是能不指令
     3）npm install express
@@ -29,8 +29,8 @@
         后面还有添加router.delete(/admin/list  删除某个id的电影
                                router.post(/admin/movie/new 新添加  (表单里面对应action)
                                router.get(/admin/update/:id 修改
-二、mongodb部分
-1）.下载，官网上没有windXP系统适合，从http://download.csdn.net/download/jason7654321/4410283
+##二、mongodb部分
+1）.下载，官网上没有winXP系统适合，从http://download.csdn.net/download/jason7654321/4410283
 获取32位的资源。（因为XP系统mongodb3.0以下版本有个大坑，一会儿会遇到）
 2）.解压该文件到一个层级较少的根目录例如E:\mongodb，然后在解压后的E:\mongodb\下面创建data目录，再在data\下面创建db目录存放数据库（E:\mongodb\data\db）,log目录存放日志文件（E:、mongodb\data\log）。然后进入cmd，进入E:\mongodb\bin目录，执行命令：mongod --dbpath E:\mongodb\data\db --port 27017 --logpath E:\mongodb\data\log --journal回车，就可以看到wait connect to 127.0.0.1:27017。。。。等提示，就可以在浏览器中输入：localhost:27017测试，如果看到You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number. 这行文字就表示成功了。
 3）.可以在刚才的cmd中接着输入mongod回车，或者在 E:\mongodb\bin\mongo.exe打开，如果成功可以看到提示版本号等信息，然后可以输入以下命令来做测试和使用：
@@ -48,7 +48,7 @@
 }):   向集合movies插入数据(这里还有注意的是_id是默认分配的不用设置)
 这样反复加入几条数据，随心意几条都可以，
 6.db.movies.remove({_id:"05hsdfhkdsfhkdsfhjkfl9884783kell"}) :移除该条数据
-三、nodejs和mongodb连接的部分
+##三、nodejs和mongodb连接的部分
 1）.npm install mongoose@3.8.14    //所以这里加了这个版本号
 2)  var mongoose = require("mongoose");
       mongoose.connect("mongodb://localhost/imooc")  //这里就出现坑了.......
@@ -56,7 +56,7 @@
 node里面连接mongodb本地数据库报错MongodbError connect UNKNOWN的问题解决了，是因为系统winxp的缘故，安装的是3.0以下的mongodb，然后mongoose要使用3.8以下版本，我重新安装了一个3.8.14的mongoose就可以了，stackoverflow上找到的方法，卡了好长时间。。。。。
        **********************/
 然后就可以愉快的访问数据了。。。。。
-/********issues**********/
+##issues
 各种错误
 1.集合里面插数据时候以为_id要自己插入........
 2.body.input类型的name可以获取到这个元素对应的value值
