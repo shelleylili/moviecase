@@ -1,9 +1,9 @@
 {
   "name": "nodeweb",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -12,6 +12,27 @@
     "express": "~4.13.4",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
-  }
+    "serve-favicon": "~2.3.0",
+    "grunt": "~1.0.1",
+    "grunt-cli": "~1.2.0",
+    "grunt-concurrent": "~2.3.1",
+    "grunt-nodemon": "~0.4.2"
+  },
+  "description": "1）npm init\r     2）npm install express-generator   //如果不提前安装第四部时候会提示express不是能不指令\r     3）npm install express\r     4）express    创建框架结构//生成项目的目录结构了\r     5）bower init \r     6）bower install bootstrap jquery\r     7）在views/layout.jade文件中引入bootstrap和jquery，因为layout.jade被其他文件继承，所以只在该页面中引用即可。\r     8）建立admin.jade(录入页面)detail.jade(电影详情页面)list.jade(电影列表页面)index.jade(初始海报介绍页面)等文件。\r     9）搭建路由在routes/index.js下面\r         var express = require('express');\r         var router = express.Router();\r         router.get(\"/\",function(req,res,next){\r             res.render('index', {//首页\r               title: '影片首页',\r               movies:{\r                     doctor:\"*********\"\r                         .\r                         .\r                         .\r                }//可以自己模拟数据测试\r           });\r         });\r         还有router.get(/admin/list ---》列表页\r         router.get(/admin/movie---->录入页面\r         router.get(/movie/:id----》详情页\r         后面还有添加router.delete(/admin/list  删除某个id的电影\r                                router.post(/admin/movie/new 新添加  (表单里面对应action)\r                                router.get(/admin/update/:id 修改\r ##二、mongodb部分\r 1）.下载，官网上没有winXP系统适合，从http://download.csdn.net/download/jason7654321/4410283\r 获取32位的资源。（因为XP系统mongodb3.0以下版本有个大坑，一会儿会遇到）\r 2）.解压该文件到一个层级较少的根目录例如E:\\mongodb，然后在解压后的E:\\mongodb\\下面创建data目录，再在data\\下面创建db目录存放数据库（E:\\mongodb\\data\\db）,log目录存放日志文件（E:、mongodb\\data\\log）。然后进入cmd，进入E:\\mongodb\\bin目录，执行命令：mongod --dbpath E:\\mongodb\\data\\db --port 27017 --logpath E:\\mongodb\\data\\log --journal回车，就可以看到wait connect to 127.0.0.1:27017。。。。等提示，就可以在浏览器中输入：localhost:27017测试，如果看到You are trying to access MongoDB on the native driver port. For http diagnostic access, add 1000 to the port number. 这行文字就表示成功了。\r 3）.可以在刚才的cmd中接着输入mongod回车，或者在 E:\\mongodb\\bin\\mongo.exe打开，如果成功可以看到提示版本号等信息，然后可以输入以下命令来做测试和使用：\r 1.show dbs ：显示所有数据库\r 2.use imooc：进入imooc数据库，没有imooc就创建一个并进入\r 3.show collections：显示所有集合\r 4.db.createCollection（“movies”）；创建集合movies\r 5.db.moives.insert({//这种格式是方便看，命令行里面还是直接敲到一行\r       doctor:\"shelley\",year:\"2020\",title:\"zhuzhuxiaxia\",\r        poster:\"http://r3.ykimg.com/05160000530EEB63675839160D0B79D5\",\r        language:\"chinese,english\",\r        country:\"China\",\r        flash:\"http://player.youku.com/player.php/sid/XNjA1Njc0NTUy/v.swf\",\r        summary:\"It's really a perfect movie in this area. Nice! \"\r }):   向集合movies插入数据(这里还有注意的是_id是默认分配的不用设置)\r 这样反复加入几条数据，随心意几条都可以，\r 6.db.movies.remove({_id:\"05hsdfhkdsfhkdsfhjkfl9884783kell\"}) :移除该条数据\r ##三、nodejs和mongodb连接的部分\r 1）.npm install mongoose@3.8.14    //所以这里加了这个版本号\r 2)  var mongoose = require(\"mongoose\");\r       mongoose.connect(\"mongodb://localhost/imooc\")  //这里就出现坑了.......\r         /********************\r node里面连接mongodb本地数据库报错MongodbError connect UNKNOWN的问题解决了，是因为系统winxp的缘故，安装的是3.0以下的mongodb，然后mongoose要使用3.8以下版本，我重新安装了一个3.8.14的mongoose就可以了，stackoverflow上找到的方法，卡了好长时间。。。。。\r        **********************/\r 然后就可以愉快的访问数据了。。。。。\r ##issues\r 各种错误\r 1.集合里面插数据时候以为_id要自己插入........\r 2.body.input类型的name可以获取到这个元素对应的value值\r 3.添加.bowerrc文件转移bower  install的插件到指定目录\r 4.npm install moment安装后\r     var app = express();\r     app.locals.moment = require(\"moment\");  //放到app的locals上才能在页面调用moment方法。而不是router上。\r 5.app.use(express.static(path.join(_dirname,\"public\"))); //指定引入文件默认路径时候要注意，会经常忘了写错路径在页面引用文件时候。\r 6.创建schema模式时候忘记暴露该接口",
+  "main": "app.js",
+  "devDependencies": {
+    "bcryptjs": "^2.3.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "pad-stream": "^1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shelleylili/moviecase.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shelleylili/moviecase/issues"
+  },
+  "homepage": "https://github.com/shelleylili/moviecase#readme"
 }

@@ -6,6 +6,7 @@ mongoose.connect("mongodb://localhost/imooc",function(err){
     }
 });
 var Movie = require("../models/movie");
+var User = require("../models/user");
 var _ = require("underscore");
 var router = express.Router();
 
@@ -18,10 +19,36 @@ router.get('/', function(req, res, next) {
           res.render('index', {
               title: '影片首页',
               movies:movies
-          })
+          });
       }
-      console.log(movies);
+      //console.log(movies);
   });
+});
+/*signup */
+router.post("/user/signup",function(req,res){
+    var _user = req.body;
+    var user = new User(_user);
+    user.save(function(err,user){
+        if(err){
+            console.log("ee",err);
+        }
+
+        res.redirect("/admin/userlist");
+    });
+});
+/* user list page. */
+router.get("/admin/userlist",function(req,res){
+    User.fetch(function(err,users){
+        if(err) {
+            console.log(err);
+        }else{
+            res.render("userlist",{
+                title:"列表 jade title",
+                users:users
+            });
+            console.log(users[0]);
+        }
+    });
 });
 /* GET detail page. */
 router.get("/movie/:id",function(req,res,next){
